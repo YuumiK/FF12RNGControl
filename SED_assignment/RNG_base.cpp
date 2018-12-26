@@ -15,6 +15,23 @@ RNG_base::RNG_base()
     currentRN = 0;
     initializeAlgorithm();
 }
+RNG_base::~RNG_base()
+{
+}
+
+void RNG_base::forward()
+{
+    
+}
+void RNG_base::backward()
+{
+    
+}
+void RNG_base::initializeAlgorithm()
+{
+    
+}
+
 void RNG_base::shiftRNG(int n)
 {
     if(n > 0)
