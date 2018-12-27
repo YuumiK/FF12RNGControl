@@ -8,6 +8,16 @@
 
 #include "MT.hpp"
 
+
+MT::MT()
+{
+    initializeAlgorithm();
+}
+MT::~MT()
+{
+    
+}
+
 void MT::sgenrand(unsigned long seed)
 {
     /* setting initial seeds to mt[N] using         */
@@ -24,6 +34,7 @@ void MT::sgenrand(unsigned long seed)
 void MT::initializeAlgorithm()
 {
     sgenrand(4357);
+    std::cout << "MT initialized!" << std::endl;
 }
 void MT::forward()
 {
@@ -105,7 +116,7 @@ void MT::backward()
         mt[N-1] |= y & LOWER_MASK;
     }
     
-    y = mt[mti];
+    y = mt[mti - 1];
     y ^= TEMPERING_SHIFT_U(y);
     y ^= TEMPERING_SHIFT_S(y) & TEMPERING_MASK_B;
     y ^= TEMPERING_SHIFT_T(y) & TEMPERING_MASK_C;

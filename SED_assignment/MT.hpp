@@ -30,11 +30,6 @@ private:
     inline unsigned long TEMPERING_SHIFT_T(unsigned long y)  {return y << 15;}
     inline unsigned long TEMPERING_SHIFT_L(unsigned long y)  {return y >> 18;}
     
-    inline unsigned long TEMPERING_SHIFT_U_REV(unsigned long y)  {return y << 11;}
-    inline unsigned long TEMPERING_SHIFT_S_REV(unsigned long y)  {return y >>  7;}
-    inline unsigned long TEMPERING_SHIFT_T_REV(unsigned long y)  {return y >> 15;}
-    inline unsigned long TEMPERING_SHIFT_L_REV(unsigned long y)  {return y << 18;}
-
     unsigned long mt[N]; /* the array for the state vector  */
     int mti=N+1; /* mti==N+1 means mt[N] is not initialized */
     void sgenrand(unsigned long seed);
@@ -43,6 +38,10 @@ protected:
     void initializeAlgorithm();
     void forward();
     void backward();
+    
+public:
+    MT();
+    ~MT();
 };
 
 #endif /* MT_hpp */

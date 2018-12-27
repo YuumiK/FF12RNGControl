@@ -13,7 +13,8 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
     MT mt;
-    mt.shiftRNG(100);
+    mt.shiftRNG(1000);
+    mt.shiftRNG(-900);
         
     return 0;
 }
