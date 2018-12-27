@@ -9,8 +9,10 @@
 #ifndef RNG_base_hpp
 #define RNG_base_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include <cassert>
+#include <ctime>
+#include <vector>
 
 class RNG_base{
    
@@ -29,6 +31,13 @@ public:
     void shiftRNG(int n);
     unsigned int getCurrentPosition();
     unsigned long getCurrentRN();
+    
+    //search
+    unsigned int search(std::function<bool(unsigned long)> f, unsigned long timeoutMillsec);
+    bool determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
+    
+    //for cui output
+    std::vector<unsigned long> getRNGlist(int count);
 };
 
 #endif /* RNG_base_hpp */

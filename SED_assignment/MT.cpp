@@ -70,7 +70,7 @@ void MT::forward()
     
     currentRN = y;
     currentPosition++;
-    std::cout << currentPosition << ":" << currentRN << std::endl;
+    std::cout << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
 }
 
 void MT::backward()
@@ -124,5 +124,5 @@ void MT::backward()
     
     currentRN = y;
     currentPosition--;
-    std::cout << currentPosition << ":" << currentRN << std::endl;
+    std::cout << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
 }
