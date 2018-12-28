@@ -107,9 +107,16 @@ bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vecto
     return false;
 }
 
-/*
-std::vector<unsigned long> RNG_base::getRNGlist(int count)
+
+std::vector<unsigned long> RNG_base::getRNGlist(int count)//start current end current +(count - 1)
 {
+    std::vector<unsigned long> result;
+    for(int i = 0; i < count; i++)
+    {
+        result.push_back(getCurrentRN());
+        forward();
+    }
+    for(int i = 0; i < count; i++) backward();
     
+    return result;
 }
-*/
