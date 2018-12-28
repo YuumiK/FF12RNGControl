@@ -34,7 +34,6 @@ void MT::sgenrand(unsigned long seed)
 void MT::initializeAlgorithm()
 {
     sgenrand(4537);
-    std::cout << "MT initialized!" << std::endl;
 }
 void MT::forward()
 {
@@ -70,7 +69,6 @@ void MT::forward()
     
     currentRN = y;
     currentPosition++;
-    std::cout << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
 }
 
 void MT::backward()
@@ -124,5 +122,4 @@ void MT::backward()
     
     currentRN = y;
     currentPosition--;
-    std::cout << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
 }

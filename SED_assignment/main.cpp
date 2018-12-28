@@ -7,6 +7,7 @@
 //
 
 #include "MT.hpp"
+#include "OutputComponent.hpp"
 #include <iostream>
 int magic = 99;
 int cure1(unsigned long RNG)
@@ -28,6 +29,7 @@ bool treasure(unsigned long RNG)
 
 int main(int argc, const char * argv[]) {
     MT mt;
+    OutputComponent oc;
     
     std::vector<int> curelist;
     /*curelist.push_back(2047);
@@ -38,7 +40,8 @@ int main(int argc, const char * argv[]) {
     curelist.push_back(2436);
     curelist.push_back(2629);
     
-    std::cout << (mt.determinePosition(cure2, curelist, 1) ? "found" : "not found") << std::endl;
+    oc.printMessage(mt.determinePosition(cure2, curelist, 1) ? "found" : "not found");
+    oc.printRNTable(30, mt);
     //mt.search(treasure, 1000);
     
     return 0;

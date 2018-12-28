@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC49C20E21D6649400969D29 /* OutputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC49C20C21D6649400969D29 /* OutputComponent.cpp */; };
 		BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACCA21D334E3001BDB3A /* main.cpp */; };
 		BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD121D33542001BDB3A /* RNG_base.cpp */; };
 		BCAFACD621D337FB001BDB3A /* MT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD421D337FB001BDB3A /* MT.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC49C20C21D6649400969D29 /* OutputComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OutputComponent.cpp; sourceTree = "<group>"; };
+		BC49C20D21D6649400969D29 /* OutputComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OutputComponent.hpp; sourceTree = "<group>"; };
 		BCAFACC721D334E3001BDB3A /* SED_assignment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SED_assignment; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCAFACCA21D334E3001BDB3A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BCAFACD121D33542001BDB3A /* RNG_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RNG_base.cpp; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				BCAFACCA21D334E3001BDB3A /* main.cpp */,
+				BC49C20C21D6649400969D29 /* OutputComponent.cpp */,
+				BC49C20D21D6649400969D29 /* OutputComponent.hpp */,
 				BCAFACD121D33542001BDB3A /* RNG_base.cpp */,
 				BCAFACD421D337FB001BDB3A /* MT.cpp */,
 				BCAFACD521D337FB001BDB3A /* MT.hpp */,
@@ -128,6 +133,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC49C20E21D6649400969D29 /* OutputComponent.cpp in Sources */,
 				BCAFACD621D337FB001BDB3A /* MT.cpp in Sources */,
 				BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */,
 				BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */,

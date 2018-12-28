@@ -84,13 +84,13 @@ bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vecto
         forward();
         if (f(getCurrentRN()) == curelist[0])
         {
-            std::cout << "debug:curelist[0] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
+            //std::cout << "debug:curelist[0] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
             for (int i = 1; i < curelist.size(); i++)
             {
                 forward();
                 if (f(getCurrentRN()) == curelist[i])
                 {
-                    std::cout << "debug:curelist["<< i <<"] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
+                    //std::cout << "debug:curelist["<< i <<"] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
                      if(i == curelist.size() - 1) return true;
                 }
                 else
