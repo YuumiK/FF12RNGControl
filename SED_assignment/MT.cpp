@@ -33,7 +33,7 @@ void MT::sgenrand(unsigned long seed)
 
 void MT::initializeAlgorithm()
 {
-    sgenrand(4357);
+    sgenrand(4537);
     std::cout << "MT initialized!" << std::endl;
 }
 void MT::forward()

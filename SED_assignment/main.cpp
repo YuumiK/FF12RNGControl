@@ -10,9 +10,10 @@
 #include <iostream>
 int cure(unsigned long RNG)
 {
-    int lv = 99;
+    int lv = 66;
     int magic = 99;
-    return (RNG%250) * (magic * (magic + lv)/256 + 2) /100 * 1;
+    double result = 20 + (RNG % (int)(20 * 12.5)) / 100.0;
+    return (int)(result * (magic * (magic + lv)/256.0 + 2.0) * 1.5);
 }
 bool treasure(unsigned long RNG)
 {
@@ -21,14 +22,13 @@ bool treasure(unsigned long RNG)
 
 int main(int argc, const char * argv[]) {
     MT mt;
-    mt.shiftRNG(7000);
     
     std::vector<int> curelist;
-    curelist.push_back(2589);
-    curelist.push_back(2436);
-    curelist.push_back(2629);
+    curelist.push_back(2047);
+    curelist.push_back(2126);
+    curelist.push_back(2192);
     
-    std::cout << (mt.determinePosition(cure, curelist, 1000) ? "found" : "not found") << std::endl;
+    std::cout << (mt.determinePosition(cure, curelist, 1) ? "found" : "not found") << std::endl;
     //mt.search(treasure, 1000);
     
     return 0;
