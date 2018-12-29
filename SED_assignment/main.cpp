@@ -43,7 +43,8 @@ int main(int argc, const char * argv[]) {
     oc.printMessage(mt.determinePosition(cure2, curelist, 1) ? "found" : "not found");
     oc.printRNTable(30, mt);
     //mt.search(treasure, 1000);
-    
+    std::cout << oc.getIntegerText("test int", INT_MAX, INT_MIN) << std::endl;
+    std::cout << oc.getYNText("test char") << std::endl;
     return 0;
 }
 /*

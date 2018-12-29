@@ -11,15 +11,17 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cctype>
+#include <algorithm>
 #include "RNG_base.hpp"
 
 
-using namespace std;
+//using namespace std;
 class OutputComponent{
 public:
-    void printMessage(const string message);
-    int getIntegerText(const string message, int max, int min);
-    bool getYNText(const string message);
+    void printMessage(const std::string message);
+    int getIntegerText(const std::string message, int max, int min);
+    bool getYNText(const std::string message);
     void printRNTable(int count, RNG_base &rngbase);
 };
 
