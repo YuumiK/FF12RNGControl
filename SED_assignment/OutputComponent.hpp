@@ -14,12 +14,13 @@
 #include <cctype>
 #include <algorithm>
 #include "RNG_base.hpp"
-
+#include "nextState.hpp"
 
 //using namespace std;
 struct OutputComponent{
     void printMessage(const std::string message);
     int getIntegerText(const std::string message, int max, int min);
+    NEXT_STATE getNextState(const std::string message);
     bool getYNText(const std::string message);
     void printRNTable(int count, RNG_base &rngbase);
 };

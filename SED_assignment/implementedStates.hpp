@@ -10,6 +10,7 @@
 #define implementedStates_hpp
 
 #include "State.hpp"
+#include "nextState.hpp"
 #include <stdlib.h>
 
 class Determine : public State{
@@ -25,7 +26,7 @@ public:
 
 class Mainmenu : public State{
 private:
-    int next;
+    NEXT_STATE next;
 public:
     Mainmenu();
     void execute(RNG_base &rng, OutputComponent &output);

@@ -23,18 +23,34 @@ void Calibration::nextState(Context *context)
 //Mainmenu
 Mainmenu::Mainmenu()
 {
-    next = 0;
+    next = NEXT_STATE::CALIBRATION;
 }
 void Mainmenu::execute(RNG_base &rng, OutputComponent &output)
 {
-    output.printMessage("Mainmenu execute");
-    next++;
+    output.printMessage("Mainmenu 1:Calibration,2:Determination,3:Adjustment,4:Config,0:Exit");
+    next = output.getNextState("Next command");
 }
 
 void Mainmenu::nextState(Context *context)
 {
-    if(next == 10) context -> Exit();
-    context->changeState(Determine::getInstance());
+    switch (next){
+        case NEXT_STATE::CALIBRATION:
+     		context->changeState(Calibration::getInstance());
+            break;
+        case NEXT_STATE::DETERMINATION:
+            context->changeState(Determine::getInstance());
+            break;
+        case NEXT_STATE::ADJUSTMENT:
+            context->changeState(Adjustment::getInstance());
+            break;
+        case NEXT_STATE::CONFIGURE:
+            context->changeState(Configure::getInstance());
+            break;
+        case NEXT_STATE::EXIT:
+            context -> Exit();
+        default:
+            break;
+    }
 }
 
 //Determine

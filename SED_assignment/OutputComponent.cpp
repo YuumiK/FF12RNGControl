@@ -18,13 +18,31 @@ int OutputComponent::getIntegerText(const std::string message, int max, int min)
     std::cout << message << ":";
     std::string input;
     std::cin >> input;
-    while(!std::all_of(input.cbegin(), input.cend(), isdigit))
-    {
-        std::cout << "unexpected input" << std::endl;
-        std::cout << message << ":";
-        std::cin >> input;
+    int num;
+    while(1){
+        try {
+            num = std::stoi(input);
+            std::cin.ignore(10000,'\n');
+        }
+        catch (const std::invalid_argument& e) {
+            std::cout << "unexpected input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input;
+        }
+        catch (const std::out_of_range& e) {
+            std::cout << "out of range input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input;
+        }
+        if(min < num && max > num) break;
+        else
+        {
+            std::cout << "out of range input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input;
+        }
     }
-    return stoi(input);
+    return num;
 }
 
 bool OutputComponent::getYNText(const std::string message)
@@ -41,6 +59,13 @@ bool OutputComponent::getYNText(const std::string message)
         initial = tolower(input[0]);
     }
     return (initial == 'y' ? true : false);
+}
+NEXT_STATE OutputComponent::getNextState(const std::string message)
+{
+    int min = static_cast<int> (NEXT_STATE::STATE_MIN);
+    int max = static_cast<int>(NEXT_STATE::STATE_MAX);
+    int num = getIntegerText(message, max, min);
+    return static_cast<NEXT_STATE>(num);
 }
 void OutputComponent::printRNTable(int count, RNG_base &rngbase)
 {
