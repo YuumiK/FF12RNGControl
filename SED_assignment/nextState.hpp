@@ -11,12 +11,12 @@
 
 enum class NEXT_STATE{
     STATE_MIN = -1,
-    EXIT = 0,
-    CALIBRATION = 1,
-    MENU = 2,
-    DETERMINATION = 3,
-    ADJUSTMENT = 4,
-    CONFIGURE = 5,
-    STATE_MAX = 6,
+    EXIT,
+    CALIBRATION,
+    DETERMINATION,
+    ADJUSTMENT,
+    CONFIGURE,
+    MENU,
+    STATE_MAX,
 };
 #endif /* nextState_hpp */

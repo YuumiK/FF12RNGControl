@@ -14,36 +14,44 @@
 class State;
 
 class Context{
-    //変数
-    int cure_magician_level;
-    int cure_magician_magic;
-    float cure_magician_magnification;
-    int cure_base_magic;
-    
-    int treasurepop_prob;
-    int treasurepop_num_of_use_rn;
-    int treasurepop_num_of_entire_use_rn;
-    
-    int treasureget_prob_of_gill;
-    int treasureget_prob_of_rare;
-    int treasureget_what_need;
-    
-    int lvup_current_lv;
-    
-    int rn_mod_x;
-    int rn_mod_threshold;
-    int rn_mod_num_of_entire_use_rn;
-    
-    int config_display_rn;
-    
-    State *_state;
 public:
+    enum PARAMETERS{
+        PARAM_MIN,
+        
+        CURE_MAGICIAN_LEVEL,
+        CURE_MAGICIAN_MAGIC,
+        CURE_MAGICIAN_MAGNIFICATION,
+        CURE_BASE_MAGIC,
+        
+        TREASUREPOP_PROB,
+        TREASUREPOP_NUM_OF_USE_RN,
+        TREASUREPOP_NUM_OF_ENTIRE_USE_RN,
+        
+        TREASUREGET_PROB_OF_GILL,
+        TREASUREGET_PROB_OF_RARE,
+        TREASUREGET_WHAT_NEED,
+        
+        LVUP_CURRENT_LV,
+        
+        RN_MOD_X,
+        RN_MOD_THRESHOLD,
+        RN_MOD_NUM_OF_ENTIRE_USE_RN,
+        CONFIG_DISPLAY_RN,
+        PARAM_MAX,
+    };
     Context();
-    void importParameters();
-    void alternateParameters();
+    float getParameters(PARAMETERS p);
+    void setParameters(PARAMETERS p, float f);
     void Exit();
     void Execute();
     void changeState(State *state);
+private:
+    float parameters[PARAM_MAX+1];
+    int HP_MPMAX[100][2];
+    
+    void importParameters();
+    void alternateParameters();
+    State *_state;
 };
 
 #endif /* Context_hpp */

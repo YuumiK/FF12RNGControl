@@ -15,7 +15,7 @@
 
 class Determine : public State{
 public:
-    void execute(RNG_base &rng, OutputComponent &output);
+    void execute(RNG_base &rng, OutputComponent &output, Context *context);
     void nextState(Context *context);
     static State *getInstance()
     {
@@ -29,7 +29,7 @@ private:
     NEXT_STATE next;
 public:
     Mainmenu();
-    void execute(RNG_base &rng, OutputComponent &output);
+    void execute(RNG_base &rng, OutputComponent &output, Context *context);
     void nextState(Context *context);
     static State *getInstance()
     {
@@ -41,7 +41,7 @@ public:
 class Calibration : public State{
 private:
 public:
-    void execute(RNG_base &rng, OutputComponent &output);
+    void execute(RNG_base &rng, OutputComponent &output, Context *context);
     void nextState(Context *context);
     static State *getInstance()
     {
@@ -53,7 +53,7 @@ public:
 class Adjustment : public State{
 private:
 public:
-    void execute(RNG_base &rng, OutputComponent &output);
+    void execute(RNG_base &rng, OutputComponent &output, Context *context);
     void nextState(Context *context);
     static State *getInstance()
     {
@@ -65,7 +65,7 @@ public:
 class Configure : public State{
 private:
 public:
-    void execute(RNG_base &rng, OutputComponent &output);
+    void execute(RNG_base &rng, OutputComponent &output, Context *context);
     void nextState(Context *context);
     static State *getInstance()
     {

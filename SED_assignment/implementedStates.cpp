@@ -10,7 +10,7 @@
 
 
 //Calibration
-void Calibration::execute(RNG_base &rng, OutputComponent &output)
+void Calibration::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     output.printMessage("Calibration execute");
     
@@ -25,10 +25,10 @@ Mainmenu::Mainmenu()
 {
     next = NEXT_STATE::CALIBRATION;
 }
-void Mainmenu::execute(RNG_base &rng, OutputComponent &output)
+void Mainmenu::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     output.printMessage("Mainmenu 1:Calibration,2:Determination,3:Adjustment,4:Config,0:Exit");
-    next = output.getNextState("Next command");
+    next = (NEXT_STATE)output.getNextState("Next command");
 }
 
 void Mainmenu::nextState(Context *context)
@@ -54,7 +54,7 @@ void Mainmenu::nextState(Context *context)
 }
 
 //Determine
-void Determine::execute(RNG_base &rng, OutputComponent &output)
+void Determine::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     output.printMessage("Determine execute");
 }
@@ -64,11 +64,11 @@ void Determine::nextState(Context *context)
 }
 
 //Adjustment
-void Adjustment::execute(RNG_base &rng, OutputComponent &output)
+void Adjustment::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     int n = output.getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
     rng.shiftRNG(n);
-    int displayRNnum = 10;
+    int displayRNnum = (int)context->getParameters(Context::CONFIG_DISPLAY_RN);
     output.printRNTable(displayRNnum, rng);
 }
 void Adjustment::nextState(Context *context)
@@ -77,7 +77,7 @@ void Adjustment::nextState(Context *context)
 }
 
 //Configure
-void Configure::execute(RNG_base &rng, OutputComponent &output)
+void Configure::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     output.printMessage("Configure execute");
 }
