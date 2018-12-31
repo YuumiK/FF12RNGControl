@@ -13,6 +13,7 @@
 void Calibration::execute(RNG_base &rng, OutputComponent &output)
 {
     output.printMessage("Calibration execute");
+    
 }
 void Calibration::nextState(Context *context)
 {
@@ -32,7 +33,7 @@ void Mainmenu::execute(RNG_base &rng, OutputComponent &output)
 
 void Mainmenu::nextState(Context *context)
 {
-    if(next == 10) exit(0);
+    if(next == 10) context -> Exit();
     context->changeState(Determine::getInstance());
 }
 
@@ -49,7 +50,10 @@ void Determine::nextState(Context *context)
 //Adjustment
 void Adjustment::execute(RNG_base &rng, OutputComponent &output)
 {
-    output.printMessage("Adjustment execute");
+    int n = output.getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
+    rng.shiftRNG(n);
+    int displayRNnum = 10;
+    output.printRNTable(displayRNnum, rng);
 }
 void Adjustment::nextState(Context *context)
 {

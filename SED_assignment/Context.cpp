@@ -15,7 +15,21 @@
 
 Context::Context()
 {
+    importParameters();
     _state = new Calibration();
+}
+void Context::importParameters()
+{
+    
+}
+void Context::alternateParameters()
+{
+    
+}
+void Context::Exit()
+{
+    alternateParameters();
+    exit(0);
 }
 
 void Context::Execute()
