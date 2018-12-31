@@ -16,8 +16,6 @@
 
 class RNG_base{
    
-private:
-    
 protected:
     unsigned int currentPosition;
     unsigned long currentRN;

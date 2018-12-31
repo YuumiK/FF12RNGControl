@@ -8,6 +8,8 @@
 
 #include "MT.hpp"
 #include "OutputComponent.hpp"
+
+#include "Context.hpp"
 #include <iostream>
 int magic = 99;
 int cure1(unsigned long RNG)
@@ -28,13 +30,15 @@ bool treasure(unsigned long RNG)
 }
 
 int main(int argc, const char * argv[]) {
+    
+    /*
     MT mt;
     OutputComponent oc;
     
     std::vector<int> curelist;
-    /*curelist.push_back(2047);
+    curelist.push_back(2047);
     curelist.push_back(2126);
-    curelist.push_back(2192);*/
+    curelist.push_back(2192);
     
     curelist.push_back(2589);
     curelist.push_back(2436);
@@ -45,6 +49,10 @@ int main(int argc, const char * argv[]) {
     //mt.search(treasure, 1000);
     std::cout << oc.getIntegerText("test int", INT_MAX, INT_MIN) << std::endl;
     std::cout << oc.getYNText("test char") << std::endl;
+    */
+    
+    Context c;
+    c.Execute();
     return 0;
 }
 /*

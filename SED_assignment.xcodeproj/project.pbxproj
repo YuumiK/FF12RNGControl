@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC3DF95221D78891001C3BBD /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF95021D78891001C3BBD /* Context.cpp */; };
+		BC3DF95421D7897D001C3BBD /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF95321D7897D001C3BBD /* State.cpp */; };
+		BC3DF95521D79642001C3BBD /* State.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF94821D7587A001C3BBD /* State.hpp */; };
+		BC3DF95821D79642001C3BBD /* Context.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF95121D78891001C3BBD /* Context.hpp */; };
+		BC3DF95921D79642001C3BBD /* OutputComponent.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BC49C20D21D6649400969D29 /* OutputComponent.hpp */; };
+		BC3DF95A21D79642001C3BBD /* MT.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD521D337FB001BDB3A /* MT.hpp */; };
+		BC3DF95B21D79642001C3BBD /* RNG_base.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD221D33542001BDB3A /* RNG_base.hpp */; };
+		BC3DF95C21D79666001C3BBD /* implementedStates.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF94E21D765FC001C3BBD /* implementedStates.hpp */; };
+		BC3DF95F21D9E71F001C3BBD /* implementedStates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF94D21D765FC001C3BBD /* implementedStates.cpp */; };
 		BC49C20E21D6649400969D29 /* OutputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC49C20C21D6649400969D29 /* OutputComponent.cpp */; };
 		BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACCA21D334E3001BDB3A /* main.cpp */; };
 		BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD121D33542001BDB3A /* RNG_base.cpp */; };
@@ -26,6 +35,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC3DF94821D7587A001C3BBD /* State.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = State.hpp; sourceTree = "<group>"; };
+		BC3DF94D21D765FC001C3BBD /* implementedStates.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = implementedStates.cpp; sourceTree = "<group>"; };
+		BC3DF94E21D765FC001C3BBD /* implementedStates.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = implementedStates.hpp; sourceTree = "<group>"; };
+		BC3DF95021D78891001C3BBD /* Context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Context.cpp; sourceTree = "<group>"; };
+		BC3DF95121D78891001C3BBD /* Context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Context.hpp; sourceTree = "<group>"; };
+		BC3DF95321D7897D001C3BBD /* State.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
 		BC49C20C21D6649400969D29 /* OutputComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OutputComponent.cpp; sourceTree = "<group>"; };
 		BC49C20D21D6649400969D29 /* OutputComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OutputComponent.hpp; sourceTree = "<group>"; };
 		BCAFACC721D334E3001BDB3A /* SED_assignment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SED_assignment; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +82,12 @@
 			isa = PBXGroup;
 			children = (
 				BCAFACCA21D334E3001BDB3A /* main.cpp */,
+				BC3DF94821D7587A001C3BBD /* State.hpp */,
+				BC3DF95321D7897D001C3BBD /* State.cpp */,
+				BC3DF94D21D765FC001C3BBD /* implementedStates.cpp */,
+				BC3DF94E21D765FC001C3BBD /* implementedStates.hpp */,
+				BC3DF95021D78891001C3BBD /* Context.cpp */,
+				BC3DF95121D78891001C3BBD /* Context.hpp */,
 				BC49C20C21D6649400969D29 /* OutputComponent.cpp */,
 				BC49C20D21D6649400969D29 /* OutputComponent.hpp */,
 				BCAFACD421D337FB001BDB3A /* MT.cpp */,
@@ -133,9 +154,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3DF95C21D79666001C3BBD /* implementedStates.hpp in Sources */,
+				BC3DF95521D79642001C3BBD /* State.hpp in Sources */,
+				BC3DF95821D79642001C3BBD /* Context.hpp in Sources */,
+				BC3DF95921D79642001C3BBD /* OutputComponent.hpp in Sources */,
+				BC3DF95A21D79642001C3BBD /* MT.hpp in Sources */,
+				BC3DF95B21D79642001C3BBD /* RNG_base.hpp in Sources */,
 				BC49C20E21D6649400969D29 /* OutputComponent.cpp in Sources */,
+				BC3DF95F21D9E71F001C3BBD /* implementedStates.cpp in Sources */,
 				BCAFACD621D337FB001BDB3A /* MT.cpp in Sources */,
 				BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */,
+				BC3DF95221D78891001C3BBD /* Context.cpp in Sources */,
+				BC3DF95421D7897D001C3BBD /* State.cpp in Sources */,
 				BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
