@@ -15,7 +15,7 @@
 
 Context::Context()
 {
-    _state = new Determine();
+    _state = new Calibration();
 }
 
 void Context::Execute()

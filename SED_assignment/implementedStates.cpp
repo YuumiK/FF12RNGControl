@@ -9,6 +9,34 @@
 #include "implementedStates.hpp"
 
 
+//Calibration
+void Calibration::execute(RNG_base &rng, OutputComponent &output)
+{
+    output.printMessage("Calibration execute");
+}
+void Calibration::nextState(Context *context)
+{
+    context->changeState(Mainmenu::getInstance());
+}
+
+//Mainmenu
+Mainmenu::Mainmenu()
+{
+    next = 0;
+}
+void Mainmenu::execute(RNG_base &rng, OutputComponent &output)
+{
+    output.printMessage("Mainmenu execute");
+    next++;
+}
+
+void Mainmenu::nextState(Context *context)
+{
+    if(next == 10) exit(0);
+    context->changeState(Determine::getInstance());
+}
+
+//Determine
 void Determine::execute(RNG_base &rng, OutputComponent &output)
 {
     output.printMessage("Determine execute");
@@ -18,20 +46,22 @@ void Determine::nextState(Context *context)
     context->changeState(Mainmenu::getInstance());
 }
 
-
-
-Mainmenu::Mainmenu()
+//Adjustment
+void Adjustment::execute(RNG_base &rng, OutputComponent &output)
 {
-    count = 0;
+    output.printMessage("Adjustment execute");
 }
-void Mainmenu::execute(RNG_base &rng, OutputComponent &output)
+void Adjustment::nextState(Context *context)
 {
-    output.printMessage("Mainmenu execute");
-    count++;
-    if(count == 10) exit(0);
+    context->changeState(Mainmenu::getInstance());
 }
 
-void Mainmenu::nextState(Context *context)
+//Configure
+void Configure::execute(RNG_base &rng, OutputComponent &output)
 {
-    context->changeState(Determine::getInstance());
+    output.printMessage("Configure execute");
+}
+void Configure::nextState(Context *context)
+{
+    context->changeState(Mainmenu::getInstance());
 }

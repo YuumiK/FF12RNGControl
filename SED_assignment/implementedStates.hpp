@@ -25,7 +25,7 @@ public:
 
 class Mainmenu : public State{
 private:
-    int count;
+    int next;
 public:
     Mainmenu();
     void execute(RNG_base &rng, OutputComponent &output);
@@ -36,5 +36,42 @@ public:
     	return &singleton;
     }
 };
+
+class Calibration : public State{
+private:
+public:
+    void execute(RNG_base &rng, OutputComponent &output);
+    void nextState(Context *context);
+    static State *getInstance()
+    {
+        static Calibration singleton;
+        return &singleton;
+    }
+};
+
+class Adjustment : public State{
+private:
+public:
+    void execute(RNG_base &rng, OutputComponent &output);
+    void nextState(Context *context);
+    static State *getInstance()
+    {
+        static Adjustment singleton;
+        return &singleton;
+    }
+};
+
+class Configure : public State{
+private:
+public:
+    void execute(RNG_base &rng, OutputComponent &output);
+    void nextState(Context *context);
+    static State *getInstance()
+    {
+        static Configure singleton;
+        return &singleton;
+    }
+};
+
 
 #endif /* implementedStates_hpp */
