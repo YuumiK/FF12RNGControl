@@ -67,13 +67,13 @@ void MT::forward()
     y ^= TEMPERING_SHIFT_T(y) & TEMPERING_MASK_C;
     y ^= TEMPERING_SHIFT_L(y);
     
-    currentRN = y;
-    currentPosition++;
+    setCurrentRN(y);
+    add1CurrentPosition();
 }
 
 void MT::backward()
 {
-    assert(currentPosition > 0);
+    assert(getCurrentPosition() >= 0);
     unsigned long y;
     unsigned long a32;
     static unsigned long mag01[2]={0x0, MATRIX_A};
@@ -120,6 +120,6 @@ void MT::backward()
     y ^= TEMPERING_SHIFT_T(y) & TEMPERING_MASK_C;
     y ^= TEMPERING_SHIFT_L(y);
     
-    currentRN = y;
-    currentPosition--;
+    setCurrentRN(y);
+    sub1CurrentPosition();
 }

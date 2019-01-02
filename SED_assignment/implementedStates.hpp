@@ -11,6 +11,7 @@
 
 #include "State.hpp"
 #include "nextState.hpp"
+#include "OutputComponent.hpp"
 #include <stdlib.h>
 
 class Determine : public State{

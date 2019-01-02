@@ -10,43 +10,54 @@
 #define Context_hpp
 
 #include "State.hpp"
+#include <map>
 
 class State;
+struct OutputComponent;
+
+enum PARAMETERS{
+    PARAM_MIN,
+    
+    CURE_MAGICIAN_LEVEL,
+    CURE_MAGICIAN_MAGIC,
+    CURE_MAGICIAN_MAGNIFICATION,
+    CURE_BASE_MAGIC,
+    
+    TREASUREPOP_PROB,
+    TREASUREPOP_NUM_OF_USE_RN,
+    TREASUREPOP_NUM_OF_ENTIRE_USE_RN,
+    
+    TREASUREGET_PROB_OF_GILL,
+    TREASUREGET_PROB_OF_RARE,
+    TREASUREGET_WHAT_NEED,
+    
+    LVUP_CURRENT_LV,
+    
+    RN_MOD_X,
+    RN_MOD_THRESHOLD,
+    RN_MOD_NUM_OF_ENTIRE_USE_RN,
+    CONFIG_DISPLAY_RN,
+    PARAM_MAX,
+};
+enum WHAT_NEED{
+    NEED_MIN,
+    NEED_GILL,
+    NEED_COMMON,
+    NEED_RARE,
+    NEED_MAX,
+};
 
 class Context{
 public:
-    enum PARAMETERS{
-        PARAM_MIN,
-        
-        CURE_MAGICIAN_LEVEL,
-        CURE_MAGICIAN_MAGIC,
-        CURE_MAGICIAN_MAGNIFICATION,
-        CURE_BASE_MAGIC,
-        
-        TREASUREPOP_PROB,
-        TREASUREPOP_NUM_OF_USE_RN,
-        TREASUREPOP_NUM_OF_ENTIRE_USE_RN,
-        
-        TREASUREGET_PROB_OF_GILL,
-        TREASUREGET_PROB_OF_RARE,
-        TREASUREGET_WHAT_NEED,
-        
-        LVUP_CURRENT_LV,
-        
-        RN_MOD_X,
-        RN_MOD_THRESHOLD,
-        RN_MOD_NUM_OF_ENTIRE_USE_RN,
-        CONFIG_DISPLAY_RN,
-        PARAM_MAX,
-    };
     Context();
-    float getParameters(PARAMETERS p);
-    void setParameters(PARAMETERS p, float f);
+    float getParameter(PARAMETERS p);
+    void setParameter(PARAMETERS p, float f);
+    void printParameters(OutputComponent &op);
     void Exit();
     void Execute();
     void changeState(State *state);
 private:
-    float parameters[PARAM_MAX+1];
+    std::map<PARAMETERS, float> parameters;
     int HP_MPMAX[100][2];
     
     void importParameters();

@@ -36,16 +36,18 @@ void RNG_base::shiftRNG(int n)
 {
     if(n > 0)
     {
-        forward();
-        shiftRNG(n-1);
+        for(int i=0;i<n;i++) forward();
     }
     else if(n < 0 && getCurrentPosition() > 0)
     {
-        backward();
-        shiftRNG(n+1);
+        for(int i=0;i<(-n);i++) backward();
     }
     return;
 }
+
+void RNG_base::add1CurrentPosition(){currentPosition++;}
+void RNG_base::sub1CurrentPosition(){currentPosition--;}
+void RNG_base::setCurrentRN(unsigned long rn){currentRN=rn;}
 
 unsigned int RNG_base::getCurrentPosition()
 {
@@ -73,22 +75,22 @@ unsigned int RNG_base::search(std::function<bool(unsigned long)> f, unsigned lon
     return 0;
 }
 
-bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec)
+bool RNG_base::determinePosition(std::function<int(unsigned long, int, int)> f, std::vector<int> curelist,int magic, int level, unsigned long timeoutMillsec)
 {
     time_t startTime = time(nullptr);
     
-    assert(curelist.size() > 0);
-    //unsigned long prevPosition = getCurrentPosition();
+    assert(curelist.size() >= 0);
+    unsigned int prevPosition = getCurrentPosition();
     while(time(nullptr) - startTime < timeoutMillsec)
     {
         forward();
-        if (f(getCurrentRN()) == curelist[0])
+        if (f(getCurrentRN(), magic, level) == curelist[0])
         {
             //std::cout << "debug:curelist[0] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
             for (int i = 1; i < curelist.size(); i++)
             {
                 forward();
-                if (f(getCurrentRN()) == curelist[i])
+                if (f(getCurrentRN(), magic, level) == curelist[i])
                 {
                     //std::cout << "debug:curelist["<< i <<"] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
                      if(i == curelist.size() - 1) return true;
@@ -104,6 +106,9 @@ bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vecto
             }
         }
     }
+    unsigned int currentPosition = getCurrentPosition();
+    int diff = (int)((long)prevPosition-(long)currentPosition);
+    shiftRNG(diff);
     return false;
 }
 

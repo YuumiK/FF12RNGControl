@@ -11,15 +11,17 @@
 
 #include "Context.hpp"
 #include <iostream>
-int magic = 99;
+
 int cure1(unsigned long RNG)
 {
+    int magic = 99;
     int lv = 66;
     double result = 20 + (RNG % (int)(20 * 12.5)) / 100.0;
     return (int)(result * (magic * (magic + lv)/256.0 + 2.0) * 1.5);
 }
 int cure2(unsigned long RNG)
 {
+    int magic = 99;
     int lv = 99;
     double result = 20 + (RNG % (int)(20 * 12.5)) / 100.0;
     return (int)(result * (magic * (magic + lv)/256.0 + 2.0) * 1.5);

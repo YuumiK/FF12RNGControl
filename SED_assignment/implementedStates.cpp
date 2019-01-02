@@ -12,8 +12,32 @@
 //Calibration
 void Calibration::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
-    output.printMessage("Calibration execute");
+    output.printMessage("Cast cure and enter the amount of restored HP");
+    std::vector<int> curelist;
     
+    const int magic = context->getParameter(CURE_MAGICIAN_MAGIC);
+    const int level = context->getParameter(CURE_MAGICIAN_LEVEL);
+    std::function<int (unsigned long, int, int)> calculateCure = [](unsigned long RN, int magic, int level)
+    {
+        double result = 20 + (RN % (int)(20 * 12.5)) / 100.0;
+        return (int)(result * (magic * (magic + level)/256.0 + 2.0) * 1.5);
+    };
+    
+    int cure;
+    for(int i=0; i<3; i++)
+    {
+        cure = output.getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
+        curelist.push_back(cure);
+    }
+    
+    unsigned long timeoutMillsec = 1;
+    while(!rng.determinePosition(calculateCure, curelist, magic, level, timeoutMillsec))
+    {
+        cure = 0;
+        cure = output.getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
+        curelist.push_back(cure);
+    }
+    output.printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
 }
 void Calibration::nextState(Context *context)
 {
@@ -68,8 +92,7 @@ void Adjustment::execute(RNG_base &rng, OutputComponent &output, Context *contex
 {
     int n = output.getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
     rng.shiftRNG(n);
-    int displayRNnum = (int)context->getParameters(Context::CONFIG_DISPLAY_RN);
-    output.printRNTable(displayRNnum, rng);
+    output.printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
 }
 void Adjustment::nextState(Context *context)
 {
@@ -80,6 +103,9 @@ void Adjustment::nextState(Context *context)
 void Configure::execute(RNG_base &rng, OutputComponent &output, Context *context)
 {
     output.printMessage("Configure execute");
+    context -> printParameters(output);
+    PARAMETERS changeParam = output.getParam("Choose which to change");
+    //input方法の工夫(getFloatTextの実装、)
 }
 void Configure::nextState(Context *context)
 {

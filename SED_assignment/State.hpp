@@ -11,12 +11,11 @@
 
 #include <iostream>
 #include "MT.hpp"
-#include "OutputComponent.hpp"
-#include "State.hpp"
 #include "Context.hpp"
 
 
 class Context;
+struct OutputComponent;
 
 //State pattern
 class State{

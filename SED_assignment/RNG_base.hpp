@@ -15,13 +15,16 @@
 #include <vector>
 
 class RNG_base{
-   
-protected:
+private:
     unsigned int currentPosition;
     unsigned long currentRN;
+protected:
     virtual void forward();
     virtual void backward();
     virtual void initializeAlgorithm();
+    void add1CurrentPosition();
+    void sub1CurrentPosition();
+    void setCurrentRN(unsigned long rn);
     
 public:
     RNG_base();
@@ -32,7 +35,7 @@ public:
     
     //search
     unsigned int search(std::function<bool(unsigned long)> f, unsigned long timeoutMillsec);
-    bool determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
+    bool determinePosition(std::function<int(unsigned long, int, int)> f, std::vector<int> curelist,int magic, int level, unsigned long timeoutMillsec);
     
     //for cui output
     std::vector<unsigned long> getRNGlist(int count);

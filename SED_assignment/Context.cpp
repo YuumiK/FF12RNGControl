@@ -11,7 +11,6 @@
 #include "implementedStates.hpp"
 
 #include "MT.hpp"
-#include "OutputComponent.hpp"
 
 Context::Context()
 {
@@ -20,35 +19,43 @@ Context::Context()
 }
 void Context::importParameters()
 {
-    parameters[PARAM_MIN] = 0;
-    parameters[CURE_MAGICIAN_LEVEL] = 99;
-    parameters[CURE_MAGICIAN_MAGIC] = 99;
-    parameters[CURE_MAGICIAN_MAGNIFICATION] = 1.5f;
-    parameters[CURE_BASE_MAGIC] = 20;
-    parameters[TREASUREPOP_PROB] = 1;
-    parameters[TREASUREPOP_NUM_OF_USE_RN] = 2;
-    parameters[TREASUREPOP_NUM_OF_ENTIRE_USE_RN] = 13;
-    parameters[TREASUREGET_PROB_OF_GILL] = 95;
-    parameters[TREASUREGET_PROB_OF_RARE] = 10;
-    parameters[TREASUREGET_WHAT_NEED] = 1;
-    parameters[LVUP_CURRENT_LV] = 1;
-    parameters[RN_MOD_X] = 100;
-    parameters[RN_MOD_THRESHOLD] = 6;
-    parameters[RN_MOD_NUM_OF_ENTIRE_USE_RN] = 3;
-    parameters[CONFIG_DISPLAY_RN] = 10;
-    parameters[PARAM_MAX] = 99;
+    parameters.insert(std::make_pair(PARAM_MIN, -1));
+    parameters.insert(std::make_pair(CURE_MAGICIAN_LEVEL, 66));
+    parameters.insert(std::make_pair(PARAM_MIN, -1));
+    parameters.insert(std::make_pair(CURE_MAGICIAN_MAGIC, 99));
+    parameters.insert(std::make_pair(CURE_MAGICIAN_MAGNIFICATION, 1.5f));
+    parameters.insert(std::make_pair(CURE_BASE_MAGIC, 20));
+    parameters.insert(std::make_pair(TREASUREPOP_PROB, 1));
+    parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_USE_RN, 2));
+    parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_ENTIRE_USE_RN, 13));
+    parameters.insert(std::make_pair(TREASUREGET_PROB_OF_GILL, 95));
+    parameters.insert(std::make_pair(TREASUREGET_PROB_OF_RARE, 10));
+    parameters.insert(std::make_pair(TREASUREGET_WHAT_NEED, NEED_RARE));
+    parameters.insert(std::make_pair(LVUP_CURRENT_LV, 1));
+    parameters.insert(std::make_pair(RN_MOD_X, 100));
+    parameters.insert(std::make_pair(RN_MOD_THRESHOLD, 6));
+    parameters.insert(std::make_pair(RN_MOD_NUM_OF_ENTIRE_USE_RN, 3));
+    parameters.insert(std::make_pair(CONFIG_DISPLAY_RN, 10));
+    parameters.insert(std::make_pair(PARAM_MAX, -1));
 }
 void Context::alternateParameters()
 {
     
 }
-float Context::getParameters(PARAMETERS p)
+float Context::getParameter(PARAMETERS p)
 {
-    return parameters[p];
+    return parameters.at(p);
 }
-void Context::setParameters(PARAMETERS p, float f)
+void Context::setParameter(PARAMETERS p, float f)
 {
     parameters[p] = f;
+}
+
+void Context::printParameters(OutputComponent &op)
+{
+    for(auto itr = parameters.begin(); itr != parameters.end(); ++itr){
+        op.printMessage(std::to_string(itr->first) + ":" + std::to_string((int)itr->second));
+    }
 }
 void Context::Exit()
 {
