@@ -81,6 +81,7 @@ void Mainmenu::nextState(Context *context)
 void Determine::execute(RNG_base &rng, Context *context)
 {
     OutputComponent::printMessage("Determine execute");
+    
 }
 void Determine::nextState(Context *context)
 {

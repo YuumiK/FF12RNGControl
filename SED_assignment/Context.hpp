@@ -11,6 +11,8 @@
 
 #include "State.hpp"
 #include <map>
+#include <fstream>   // ifstream, ofstream
+#include <sstream>
 
 class State;
 
@@ -112,6 +114,7 @@ public:
     void changeState(State *state);
 private:
     std::map<PARAMETERS, float> parameters;
+    const std::string filename = "config.csv";
     int HP_MPMAX[100][2];
     
     void importParameters();
