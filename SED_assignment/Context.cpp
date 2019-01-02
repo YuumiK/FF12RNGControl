@@ -54,7 +54,7 @@ void Context::setParameter(PARAMETERS p, float f)
 void Context::printParameters()
 {
     for(auto itr = parameters.begin(); itr != parameters.end(); ++itr){
-        OutputComponent::printMessage(std::to_string(itr->first) + ":" + std::to_string((int)itr->second));
+        OutputComponent::printMessage(toString(itr->first) + ":" + std::to_string((int)itr->second));
     }
 }
 void Context::Exit()
