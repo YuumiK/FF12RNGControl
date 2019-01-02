@@ -10,9 +10,9 @@
 
 
 //Calibration
-void Calibration::execute(RNG_base &rng, OutputComponent &output, Context *context)
+void Calibration::execute(RNG_base &rng, Context *context)
 {
-    output.printMessage("Cast cure and enter the amount of restored HP");
+    OutputComponent::printMessage("Cast cure and enter the amount of restored HP");
     std::vector<int> curelist;
     
     const int magic = context->getParameter(CURE_MAGICIAN_MAGIC);
@@ -26,7 +26,7 @@ void Calibration::execute(RNG_base &rng, OutputComponent &output, Context *conte
     int cure;
     for(int i=0; i<3; i++)
     {
-        cure = output.getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
+        cure = OutputComponent::getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
         curelist.push_back(cure);
     }
     
@@ -34,10 +34,10 @@ void Calibration::execute(RNG_base &rng, OutputComponent &output, Context *conte
     while(!rng.determinePosition(calculateCure, curelist, magic, level, timeoutMillsec))
     {
         cure = 0;
-        cure = output.getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
+        cure = OutputComponent::getIntegerText("cure"+std::to_string(curelist.size()+1), INT_MAX, INT_MIN);
         curelist.push_back(cure);
     }
-    output.printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
+    OutputComponent::printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
 }
 void Calibration::nextState(Context *context)
 {
@@ -49,10 +49,10 @@ Mainmenu::Mainmenu()
 {
     next = NEXT_STATE::CALIBRATION;
 }
-void Mainmenu::execute(RNG_base &rng, OutputComponent &output, Context *context)
+void Mainmenu::execute(RNG_base &rng, Context *context)
 {
-    output.printMessage("Mainmenu 1:Calibration,2:Determination,3:Adjustment,4:Config,0:Exit");
-    next = (NEXT_STATE)output.getNextState("Next command");
+    OutputComponent::printMessage("Mainmenu 1:Calibration,2:Determination,3:Adjustment,4:Config,0:Exit");
+    next = OutputComponent::getNextState("Next command");
 }
 
 void Mainmenu::nextState(Context *context)
@@ -78,9 +78,9 @@ void Mainmenu::nextState(Context *context)
 }
 
 //Determine
-void Determine::execute(RNG_base &rng, OutputComponent &output, Context *context)
+void Determine::execute(RNG_base &rng, Context *context)
 {
-    output.printMessage("Determine execute");
+    OutputComponent::printMessage("Determine execute");
 }
 void Determine::nextState(Context *context)
 {
@@ -88,11 +88,11 @@ void Determine::nextState(Context *context)
 }
 
 //Adjustment
-void Adjustment::execute(RNG_base &rng, OutputComponent &output, Context *context)
+void Adjustment::execute(RNG_base &rng, Context *context)
 {
-    int n = output.getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
+    int n = OutputComponent::getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
     rng.shiftRNG(n);
-    output.printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
+    OutputComponent::printRNTable(context->getParameter(CONFIG_DISPLAY_RN), rng);
 }
 void Adjustment::nextState(Context *context)
 {
@@ -100,12 +100,20 @@ void Adjustment::nextState(Context *context)
 }
 
 //Configure
-void Configure::execute(RNG_base &rng, OutputComponent &output, Context *context)
+void Configure::execute(RNG_base &rng, Context *context)
 {
-    output.printMessage("Configure execute");
-    context -> printParameters(output);
-    PARAMETERS changeParam = output.getParam("Choose which to change");
-    //input方法の工夫(getFloatTextの実装、)
+    OutputComponent::printMessage("Configure execute");
+    context -> printParameters();
+    PARAMETERS changeParam = OutputComponent::getParam("Choose which to change");
+    switch (changeParam) {
+        case CURE_MAGICIAN_MAGNIFICATION:
+            context->setParameter(changeParam, OutputComponent::getFloatText("change to", 2.0f, 0.0f));
+            break;
+            
+        default:
+            context->setParameter(changeParam, OutputComponent::getIntegerText("change to", INT_MAX, INT_MIN));
+            break;
+    }
 }
 void Configure::nextState(Context *context)
 {

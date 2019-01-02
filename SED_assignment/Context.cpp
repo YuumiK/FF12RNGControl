@@ -51,10 +51,10 @@ void Context::setParameter(PARAMETERS p, float f)
     parameters[p] = f;
 }
 
-void Context::printParameters(OutputComponent &op)
+void Context::printParameters()
 {
     for(auto itr = parameters.begin(); itr != parameters.end(); ++itr){
-        op.printMessage(std::to_string(itr->first) + ":" + std::to_string((int)itr->second));
+        OutputComponent::printMessage(std::to_string(itr->first) + ":" + std::to_string((int)itr->second));
     }
 }
 void Context::Exit()
@@ -66,9 +66,8 @@ void Context::Exit()
 void Context::Execute()
 {
     MT mt;
-    OutputComponent output;
     while (1) {
-        _state -> execute(mt, output, this);
+        _state -> execute(mt, this);
         _state -> nextState(this);
     }
 }

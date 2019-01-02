@@ -15,12 +15,11 @@
 
 
 class Context;
-struct OutputComponent;
 
 //State pattern
 class State{
 public:
-    virtual void execute(RNG_base &rng, OutputComponent &output, Context *context)=0;
+    virtual void execute(RNG_base &rng, Context *context)=0;
     virtual void nextState(Context *context) = 0;
 };
 #endif /* State_hpp */

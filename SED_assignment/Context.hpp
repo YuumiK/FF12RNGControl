@@ -13,7 +13,6 @@
 #include <map>
 
 class State;
-struct OutputComponent;
 
 enum PARAMETERS{
     PARAM_MIN,
@@ -52,7 +51,7 @@ public:
     Context();
     float getParameter(PARAMETERS p);
     void setParameter(PARAMETERS p, float f);
-    void printParameters(OutputComponent &op);
+    void printParameters();
     void Exit();
     void Execute();
     void changeState(State *state);

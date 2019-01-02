@@ -19,13 +19,13 @@
 
 //using namespace std;
 struct OutputComponent{
-    void printMessage(const std::string message);
-    int getIntegerText(const std::string message, int max, int min);
-    float getFloatText(const std::string message, float max, float min);
-    PARAMETERS getParam(const std::string message);
-    NEXT_STATE getNextState(const std::string message);
-    bool getYNText(const std::string message);
-    void printRNTable(int count, RNG_base &rngbase);
+    static void printMessage(const std::string message);
+    static int getIntegerText(const std::string message, int max, int min);
+    static float getFloatText(const std::string message, float max, float min);
+    static PARAMETERS getParam(const std::string message);
+    static NEXT_STATE getNextState(const std::string message);
+    static bool getYNText(const std::string message);
+    static void printRNTable(int count, RNG_base &rngbase);
 };
 
 #endif /* OutputComponent_hpp */
