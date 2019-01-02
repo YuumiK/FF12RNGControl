@@ -21,6 +21,7 @@
 struct OutputComponent{
     void printMessage(const std::string message);
     int getIntegerText(const std::string message, int max, int min);
+    float getFloatText(const std::string message, float max, float min);
     PARAMETERS getParam(const std::string message);
     NEXT_STATE getNextState(const std::string message);
     bool getYNText(const std::string message);

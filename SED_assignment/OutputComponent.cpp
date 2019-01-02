@@ -45,6 +45,38 @@ int OutputComponent::getIntegerText(const std::string message, int max, int min)
     return num;
 }
 
+float OutputComponent::getFloatText(const std::string message, float max, float min)
+{
+    std::cout << message << ":";
+    std::string input;
+    std::cin >> input; std::cin.clear();
+    float num;
+    while(1){
+        try {
+            num = std::stof(input);
+        }
+        catch (const std::invalid_argument& e) {
+            std::cout << "unexpected input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input; std::cin.clear();
+        }
+        catch (const std::out_of_range& e) {
+            std::cout << "out of range input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input; std::cin.clear();
+        }
+        if(min < num && max > num) break;
+        else
+        {
+            std::cout << "out of range input" << std::endl;
+            std::cout << message << ":";
+            std::cin >> input; std::cin.clear();
+        }
+    }
+    return num;
+}
+
+
 bool OutputComponent::getYNText(const std::string message)
 {
     std::cout << message << ":";
