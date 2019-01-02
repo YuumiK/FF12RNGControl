@@ -115,7 +115,8 @@ public:
 private:
     std::map<PARAMETERS, float> parameters;
     const std::string filename = "config.csv";
-    int HP_MPMAX[100][2];
+    std::vector<int> HPMaxMod;
+    std::vector<int> MPMaxMod;
     
     void importParameters();
     void alternateParameters();

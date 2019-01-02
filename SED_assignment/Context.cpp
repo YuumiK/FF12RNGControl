@@ -40,24 +40,55 @@ void Context::importParameters()
         
         if(!separated_string_buffer.empty()) parameters.insert(std::make_pair(static_cast<PARAMETERS>(count++), std::stof(separated_string_buffer)));
     }
+    reading_file.close();
+    //HPMP
+    const std::string hpmpfilename = "HPMPmodby.csv";
+    reading_file.open(hpmpfilename, std::ios::in);
+    
+    std::cout << "reading " << hpmpfilename << "..." << std::endl;
+    
+    count=0;
+    while (!reading_file.eof())
+    {
+        // read by line
+        std::getline(reading_file, reading_line_buffer);
+        
+        // read by delimiter on reading "one" line
+        const char delimiter = ',';
+        std::string separated_string_buffer;
+        std::istringstream line_separater(reading_line_buffer);
+        
+        while(std::getline(line_separater, separated_string_buffer, delimiter))
+        {
+            if(count == 0)
+            {
+                HPMaxMod.push_back(std::stoi(separated_string_buffer));
+            }
+            else if(count == 1)
+            {
+                MPMaxMod.push_back(std::stoi(separated_string_buffer));
+            }
+        }
+        count++;
+    }
     /*
-    parameters.insert(std::make_pair(PARAM_MIN, -1));
-    parameters.insert(std::make_pair(CURE_MAGICIAN_LEVEL, 66));
-    parameters.insert(std::make_pair(CURE_MAGICIAN_MAGIC, 99));
-    parameters.insert(std::make_pair(CURE_MAGICIAN_MAGNIFICATION, 1.5f));
-    parameters.insert(std::make_pair(CURE_BASE_MAGIC, 20));
-    parameters.insert(std::make_pair(TREASUREPOP_PROB, 1));
-    parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_USE_RN, 2));
-    parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_ENTIRE_USE_RN, 13));
-    parameters.insert(std::make_pair(TREASUREGET_PROB_OF_GILL, 95));
-    parameters.insert(std::make_pair(TREASUREGET_PROB_OF_RARE, 10));
-    parameters.insert(std::make_pair(TREASUREGET_WHAT_NEED, NEED_RARE));
-    parameters.insert(std::make_pair(LVUP_CURRENT_LV, 1));
-    parameters.insert(std::make_pair(RN_MOD_X, 100));
-    parameters.insert(std::make_pair(RN_MOD_THRESHOLD, 6));
-    parameters.insert(std::make_pair(RN_MOD_NUM_OF_ENTIRE_USE_RN, 3));
-    parameters.insert(std::make_pair(CONFIG_DISPLAY_RN, 10));
-    parameters.insert(std::make_pair(PARAM_MAX, -1));*/
+     parameters.insert(std::make_pair(PARAM_MIN, -1));
+     parameters.insert(std::make_pair(CURE_MAGICIAN_LEVEL, 66));
+     parameters.insert(std::make_pair(CURE_MAGICIAN_MAGIC, 99));
+     parameters.insert(std::make_pair(CURE_MAGICIAN_MAGNIFICATION, 1.5f));
+     parameters.insert(std::make_pair(CURE_BASE_MAGIC, 20));
+     parameters.insert(std::make_pair(TREASUREPOP_PROB, 1));
+     parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_USE_RN, 2));
+     parameters.insert(std::make_pair(TREASUREPOP_NUM_OF_ENTIRE_USE_RN, 13));
+     parameters.insert(std::make_pair(TREASUREGET_PROB_OF_GILL, 95));
+     parameters.insert(std::make_pair(TREASUREGET_PROB_OF_RARE, 10));
+     parameters.insert(std::make_pair(TREASUREGET_WHAT_NEED, NEED_RARE));
+     parameters.insert(std::make_pair(LVUP_CURRENT_LV, 1));
+     parameters.insert(std::make_pair(RN_MOD_X, 100));
+     parameters.insert(std::make_pair(RN_MOD_THRESHOLD, 6));
+     parameters.insert(std::make_pair(RN_MOD_NUM_OF_ENTIRE_USE_RN, 3));
+     parameters.insert(std::make_pair(CONFIG_DISPLAY_RN, 10));
+     parameters.insert(std::make_pair(PARAM_MAX, -1));*/
 }
 void Context::alternateParameters()
 {
