@@ -94,15 +94,15 @@ bool OutputComponent::getYNText(const std::string message)
 }
 void OutputComponent::printParameters()
     {
-        for(int p = 1;p<PARAM_MAX; ++p){
+        for(int p = PARAM_MIN; p<PARAM_MAX; ++p){
             PARAMETERS pp = static_cast<PARAMETERS>(p);
-            printMessage(toString(pp) + ":" + std::to_string(static_cast<int>(Context::getParameter(pp))));
+            printMessage(std::to_string(p) + ":"+ ((p==PARAM_MIN) ? "Change nothing" : (toString(pp) + "=" + std::to_string(static_cast<int>(Context::getParameter(pp))))) );
         }
     }
 
 PARAMETERS OutputComponent::getParam(const std::string message)
 {
-    int min = static_cast<int>(PARAM_MIN);
+    int min = static_cast<int>(PARAM_MIN)-1;
     int max = static_cast<int>(PARAM_MAX);
     int num = getIntegerText(message, max, min);
     return static_cast<PARAMETERS>(num);
@@ -124,7 +124,7 @@ void OutputComponent::printRNTable(int count, RNG_base &rngbase)
     
     for(int i = 0; i < rnlist.size(); i++)
     {
-        std::cout <<        std::setfill(' ') << std::setw(8)        << (i == 0 ? "USED" : (i == 1 ? ">" : " "));
+        std::cout <<        std::setfill(' ') << std::setw(8)        << (i == 0 ? "CONSUMED" : (i == 1 ? ">" : " "));
         std::cout << ":" << std::setfill('0') << std::setw(widthPos) << (currentPosition + i);
         std::cout << ":" << std::setfill('0') << std::setw(widthRN)  << rnlist[i] << std::endl;
     }

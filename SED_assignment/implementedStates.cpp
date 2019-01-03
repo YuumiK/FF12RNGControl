@@ -162,7 +162,9 @@ void Configure::execute(RNG_base &rng, Context *context)
         case CURE_MAGICIAN_MAGNIFICATION:
             Context::setParameter(changeParam, OutputComponent::getFloatText("change to", 2.0f, 0.0f));
             break;
-            
+        case PARAM_MIN:
+        case PARAM_MAX:
+            break;
         default:
             Context::setParameter(changeParam, OutputComponent::getIntegerText("change to", INT_MAX, INT_MIN));
             break;
