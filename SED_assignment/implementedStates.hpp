@@ -10,10 +10,29 @@
 #define implementedStates_hpp
 
 #include "State.hpp"
-#include "nextState.hpp"
 #include "OutputComponent.hpp"
 #include <stdlib.h>
+#include <cmath>
 
+enum class NEXT_STATE{
+    STATE_MIN = -1,
+    EXIT,
+    CALIBRATION,
+    DETERMINATION,
+    ADJUSTMENT,
+    CONFIGURE,
+    MENU,
+    STATE_MAX,
+};
+
+enum class CONTROL_EVENT{
+    EVENT_MIN,
+    TREASURE_APPEAR,
+    TREASURE_OBTAIN,
+    HPMP_MAX,
+    CONTROL_MODULO,
+    EVENT_MAX,
+};
 class Determine : public State{
 public:
     void execute(RNG_base &rng, Context *context);

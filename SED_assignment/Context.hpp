@@ -9,14 +9,15 @@
 #ifndef Context_hpp
 #define Context_hpp
 
-#include "State.hpp"
 #include <map>
 #include <fstream>   // ifstream, ofstream
 #include <sstream>
+#include "implementedStates.hpp"
+#include "MT.hpp"
 
 class State;
 
-enum PARAMETERS{
+enum PARAMETERS : int{
     PARAM_MIN,
     
     CURE_MAGICIAN_LEVEL,
@@ -40,6 +41,7 @@ enum PARAMETERS{
     CONFIG_DISPLAY_RN,
     PARAM_MAX,
 };
+
 static std::string toString(PARAMETERS p)
 {
     std::string s;
@@ -95,6 +97,7 @@ static std::string toString(PARAMETERS p)
     }
     return s;
 }
+
 enum WHAT_NEED{
     NEED_MIN,
     NEED_GILL,
@@ -103,24 +106,28 @@ enum WHAT_NEED{
     NEED_MAX,
 };
 
+static std::map<PARAMETERS, float> parameters;
+static std::vector<int> HPMaxMod;
+static std::vector<int> MPMaxMod;
+
 class Context{
-public:
-    Context();
-    float getParameter(PARAMETERS p);
-    void setParameter(PARAMETERS p, float f);
-    void printParameters();
-    void Exit();
-    void Execute();
-    void changeState(State *state);
 private:
-    std::map<PARAMETERS, float> parameters;
     const std::string filename = "config.csv";
-    std::vector<int> HPMaxMod;
-    std::vector<int> MPMaxMod;
     
     void importParameters();
     void alternateParameters();
     State *_state;
+
+public:
+    Context();
+    static float getParameter(PARAMETERS p);
+    static void setParameter(PARAMETERS p, float f);
+    static int getHPmax(int lv);
+    static int getMPmax(int lv);
+    
+    void Exit();
+    void Execute();
+    void changeState(State *state);
 };
 
 #endif /* Context_hpp */

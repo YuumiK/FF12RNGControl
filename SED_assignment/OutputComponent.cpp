@@ -92,6 +92,14 @@ bool OutputComponent::getYNText(const std::string message)
     }
     return (initial == 'y' ? true : false);
 }
+void OutputComponent::printParameters()
+    {
+        for(int p = 1;p<PARAM_MAX; ++p){
+            PARAMETERS pp = static_cast<PARAMETERS>(p);
+            printMessage(toString(pp) + ":" + std::to_string(static_cast<int>(Context::getParameter(pp))));
+        }
+    }
+
 PARAMETERS OutputComponent::getParam(const std::string message)
 {
     int min = static_cast<int>(PARAM_MIN);
@@ -99,13 +107,7 @@ PARAMETERS OutputComponent::getParam(const std::string message)
     int num = getIntegerText(message, max, min);
     return static_cast<PARAMETERS>(num);
 }
-NEXT_STATE OutputComponent::getNextState(const std::string message)
-{
-    int min = static_cast<int>(NEXT_STATE::STATE_MIN);
-    int max = static_cast<int>(NEXT_STATE::STATE_MAX);
-    int num = getIntegerText(message, max, min);
-    return static_cast<NEXT_STATE>(num);
-}
+
 void OutputComponent::printRNTable(int count, RNG_base &rngbase)
 {
     unsigned int currentPosition = rngbase.getCurrentPosition();

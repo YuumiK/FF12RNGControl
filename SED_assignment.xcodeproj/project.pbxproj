@@ -16,7 +16,6 @@
 		BC3DF95B21D79642001C3BBD /* RNG_base.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD221D33542001BDB3A /* RNG_base.hpp */; };
 		BC3DF95C21D79666001C3BBD /* implementedStates.hpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF94E21D765FC001C3BBD /* implementedStates.hpp */; };
 		BC3DF95F21D9E71F001C3BBD /* implementedStates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF94D21D765FC001C3BBD /* implementedStates.cpp */; };
-		BC3DF96221DA6BDD001C3BBD /* nextState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC3DF96021DA6BDD001C3BBD /* nextState.cpp */; };
 		BC49C20E21D6649400969D29 /* OutputComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BC49C20C21D6649400969D29 /* OutputComponent.cpp */; };
 		BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACCA21D334E3001BDB3A /* main.cpp */; };
 		BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BCAFACD121D33542001BDB3A /* RNG_base.cpp */; };
@@ -42,8 +41,6 @@
 		BC3DF95021D78891001C3BBD /* Context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Context.cpp; sourceTree = "<group>"; };
 		BC3DF95121D78891001C3BBD /* Context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Context.hpp; sourceTree = "<group>"; };
 		BC3DF95321D7897D001C3BBD /* State.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
-		BC3DF96021DA6BDD001C3BBD /* nextState.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nextState.cpp; sourceTree = "<group>"; };
-		BC3DF96121DA6BDD001C3BBD /* nextState.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = nextState.hpp; sourceTree = "<group>"; };
 		BC49C20C21D6649400969D29 /* OutputComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OutputComponent.cpp; sourceTree = "<group>"; };
 		BC49C20D21D6649400969D29 /* OutputComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OutputComponent.hpp; sourceTree = "<group>"; };
 		BCAFACC721D334E3001BDB3A /* SED_assignment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SED_assignment; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,8 +94,6 @@
 				BCAFACD521D337FB001BDB3A /* MT.hpp */,
 				BCAFACD121D33542001BDB3A /* RNG_base.cpp */,
 				BCAFACD221D33542001BDB3A /* RNG_base.hpp */,
-				BC3DF96021DA6BDD001C3BBD /* nextState.cpp */,
-				BC3DF96121DA6BDD001C3BBD /* nextState.hpp */,
 			);
 			path = SED_assignment;
 			sourceTree = "<group>";
@@ -169,7 +164,6 @@
 				BC3DF95F21D9E71F001C3BBD /* implementedStates.cpp in Sources */,
 				BCAFACD621D337FB001BDB3A /* MT.cpp in Sources */,
 				BCAFACD321D33542001BDB3A /* RNG_base.cpp in Sources */,
-				BC3DF96221DA6BDD001C3BBD /* nextState.cpp in Sources */,
 				BC3DF95221D78891001C3BBD /* Context.cpp in Sources */,
 				BC3DF95421D7897D001C3BBD /* State.cpp in Sources */,
 				BCAFACCB21D334E3001BDB3A /* main.cpp in Sources */,

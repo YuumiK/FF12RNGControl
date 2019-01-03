@@ -34,8 +34,8 @@ public:
     unsigned long getCurrentRN();
     
     //search
-    unsigned int search(std::function<bool(unsigned long)> f, unsigned long timeoutMillsec);
-    bool determinePosition(std::function<int(unsigned long, int, int)> f, std::vector<int> curelist,int magic, int level, unsigned long timeoutMillsec);
+    unsigned int search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec);
+    bool determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
     
     //for cui output
     std::vector<unsigned long> getRNGlist(int count);
