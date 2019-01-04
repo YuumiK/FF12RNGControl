@@ -38,7 +38,6 @@ enum PARAMETERS : int{
     RN_MOD_X,
     RN_MOD_THRESHOLD,
     RN_MOD_NUM_OF_ENTIRE_USE_RN,
-    CONFIG_DISPLAY_RN,
     PARAM_MAX,
 };
 
@@ -87,9 +86,6 @@ static std::string toString(PARAMETERS p)
             break;
         case RN_MOD_NUM_OF_ENTIRE_USE_RN:
             s = "RN_MOD_NUM_OF_ENTIRE_CONSUME_RN";
-            break;
-        case CONFIG_DISPLAY_RN:
-            s = "CONFIG_DISPLAY_RN";
             break;
         default:
             s = "";

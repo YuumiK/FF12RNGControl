@@ -35,9 +35,10 @@ public:
     
     //search
     unsigned int search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec);
-    bool determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
+    // return how many positions are found in given curelist. if it's 1, then position will be shifted to that position. else position are reset to initial position.
+    int determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
     
-    //for cui output
+    //getRNGlist from currentPosition to currentPosition + count - 1
     std::vector<unsigned long> getRNGlist(int count);
 };
 

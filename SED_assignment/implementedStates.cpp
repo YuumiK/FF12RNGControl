@@ -40,7 +40,7 @@ void Calibration::execute(RNG_base &rng, Context *context)
         	curelist.push_back(cure);
     	}
     }
-    OutputComponent::printRNTable(Context::getParameter(CONFIG_DISPLAY_RN), rng);
+    OutputComponent::printRNTable(rng);
 }
 void Calibration::nextState(Context *context)
 {
@@ -186,7 +186,7 @@ void Determine::execute(RNG_base &rng, Context *context)
         rng.shiftRNG(idealPosition - prevPosition);
         
         OutputComponent::printMessage("Here is the ideal RNG state for the event you desire:");
-        OutputComponent::printRNTable(moveRNGs+1, rng);
+        OutputComponent::printRNTable(rng, moveRNGs+1);
         rng.shiftRNG(moveRNGs);
     }
 }
@@ -201,7 +201,7 @@ void Adjustment::execute(RNG_base &rng, Context *context)
 {
     int n = OutputComponent::getIntegerText("enter the amount of shift",INT_MAX, INT_MIN);
     rng.shiftRNG(n);
-    OutputComponent::printRNTable(Context::getParameter(CONFIG_DISPLAY_RN), rng);
+    OutputComponent::printRNTable(rng);
 }
 void Adjustment::nextState(Context *context)
 {

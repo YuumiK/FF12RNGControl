@@ -76,12 +76,14 @@ unsigned int RNG_base::search(std::function<bool(std::vector<unsigned long>)> f,
     return 0;
 }
 
-bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec)
+int RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec)
 {
     time_t startTime = time(nullptr);
     
     assert(curelist.size() >= 0);
     unsigned int prevPosition = getCurrentPosition();
+    int numOfFound = 0;
+    unsigned int firstFound = prevPosition;
     while(time(nullptr) - startTime < timeoutMillsec)
     {
         forward();
@@ -94,7 +96,16 @@ bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vecto
                 if (f(getCurrentRN()) == curelist[i])
                 {
                     //std::cout << "debug:curelist["<< i <<"] found in " << getCurrentPosition() << ":" << getCurrentRN() << std::endl;
-                     if(i == curelist.size() - 1) return true;
+                     if(i == curelist.size() - 1)
+                     {
+                         numOfFound++;
+                         if(numOfFound == 1) firstFound = getCurrentPosition();
+                         for (int j = 0; j < i; j++)
+                         {
+                             backward();
+                         }
+                         break;
+                     }
                 }
                 else
                 {
@@ -108,9 +119,10 @@ bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vecto
         }
     }
     unsigned int currentPosition = getCurrentPosition();
-    int diff = (int)((long)prevPosition-(long)currentPosition);
+    int diff;
+    diff = numOfFound == 1 ? (int)((long)firstFound-(long)currentPosition) : (int)((long)prevPosition-(long)currentPosition);
     shiftRNG(diff);
-    return false;
+    return numOfFound;
 }
 
 

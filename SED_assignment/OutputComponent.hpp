@@ -26,7 +26,9 @@ struct OutputComponent{
     static void printParameters();
     static PARAMETERS getParam(const std::string message);
 	static bool getYNText(const std::string message);
-    static void printRNTable(int count, RNG_base &rngbase);
+    static void printRNTable(RNG_base &rngbase, int count = 10);
+    //static void printRNTablewithCure(RNG_base &rngbase, std::function<int(unsigned long)> f, int count);
+    //static void printRNTablewithEvent(RNG_base &rngbase, std::function<bool(std::vector<unsigned long>)> f, int count);
 };
 
 #endif /* OutputComponent_hpp */

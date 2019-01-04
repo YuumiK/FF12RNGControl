@@ -130,5 +130,4 @@ int Context::getMPmax(int lv){return MPMaxMod.at(lv - 1);}
  parameters.insert(std::make_pair(RN_MOD_X, 100));
  parameters.insert(std::make_pair(RN_MOD_THRESHOLD, 6));
  parameters.insert(std::make_pair(RN_MOD_NUM_OF_ENTIRE_USE_RN, 3));
- parameters.insert(std::make_pair(CONFIG_DISPLAY_RN, 10));
  parameters.insert(std::make_pair(PARAM_MAX, -1));*/

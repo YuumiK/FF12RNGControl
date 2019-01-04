@@ -108,7 +108,7 @@ PARAMETERS OutputComponent::getParam(const std::string message)
     return static_cast<PARAMETERS>(num);
 }
 
-void OutputComponent::printRNTable(int count, RNG_base &rngbase)
+void OutputComponent::printRNTable(RNG_base &rngbase, int count)
 {
     unsigned int currentPosition = rngbase.getCurrentPosition();
     std::vector<unsigned long> rnlist = rngbase.getRNGlist(count);
