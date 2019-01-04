@@ -105,6 +105,40 @@ bool isLowerThanThreshold(std::vector<unsigned long> RNs)
     return (RNs[1]%(int)(Context::getParameter(RN_MOD_X))) < Context::getParameter(RN_MOD_THRESHOLD);
 }
 
+//return how many hits will be provided from current rng position
+int howManyRNConsumedByHit(RNG_base &rng){
+    std::vector<unsigned long> RNs = rng.getRNGlist(1 + 5 + 11);
+    if(RNs[5]%100 < (int)(5*0.7))
+    {
+        int conbo = 2;
+        for(int i = 6; i < RNs.size(); i++)
+        {
+            if(RNs[i]%100 < 8) conbo++;
+        }
+        return 9*conbo+12;
+    }
+    else return 10;
+}
+void printHowToShift(RNG_base &rng, int shift)
+{
+    if(shift <= 0) return;
+    else if(shift < 10) OutputComponent::printMessage("cure " + std::to_string(shift) + "times.");
+    else
+    {
+        int consumeByHit = howManyRNConsumedByHit(rng);
+        if(shift < consumeByHit)
+        {
+            OutputComponent::printMessage("cure.");
+            printHowToShift(rng, shift - 1);
+        }
+        else
+        {
+            OutputComponent::printMessage("Hit yourself by hand.");
+            printHowToShift(rng, shift - consumeByHit);
+        }
+    }
+}
+
 //Determine
 void Determine::execute(RNG_base &rng, Context *context)
 {
@@ -146,8 +180,11 @@ void Determine::execute(RNG_base &rng, Context *context)
                 break;
         }
         unsigned int prevPosition = rng.getCurrentPosition();
-        rng.search(control, numOfRequireRNs, timeoutMillsec);
-        OutputComponent::printMessage("You need to move " + std::to_string(rng.getCurrentPosition() - prevPosition) + "RNs.");
+        unsigned int idealPosition = rng.search(control, numOfRequireRNs, timeoutMillsec);
+        OutputComponent::printMessage("You need to move " + std::to_string(idealPosition - prevPosition) + "RNs. Here's how.");
+        printHowToShift(rng, idealPosition - prevPosition);
+        rng.shiftRNG(idealPosition - prevPosition);
+        
         OutputComponent::printMessage("Here is the ideal RNG state for the event you desire:");
         OutputComponent::printRNTable(moveRNGs+1, rng);
         rng.shiftRNG(moveRNGs);

@@ -34,7 +34,7 @@ public:
     unsigned long getCurrentRN();
     
     //search
-    bool search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec);
+    unsigned int search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec);
     bool determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec);
     
     //for cui output
