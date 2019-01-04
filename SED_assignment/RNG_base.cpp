@@ -59,20 +59,20 @@ unsigned long RNG_base::getCurrentRN()
     return currentRN;
 }
 
-unsigned int RNG_base::search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec)
+bool RNG_base::search(std::function<bool(std::vector<unsigned long>)> f,int numOfRequireRNs, unsigned long timeoutMillsec)//return the RN position you should consume, and shift to that position.
 {
     time_t startTime = time(nullptr);
     unsigned int prevPosition = getCurrentPosition();
     while(time(nullptr) - startTime < timeoutMillsec){
         forward();
-        if(f(getRNGlist(numOfRequireRNs)))//found
+        if(f(getRNGlist(numOfRequireRNs + 1)))//found
         {
             unsigned int foundPosition = getCurrentPosition();
             shiftRNG(foundPosition - prevPosition);
-            return foundPosition;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 bool RNG_base::determinePosition(std::function<int(unsigned long)> f, std::vector<int> curelist, unsigned long timeoutMillsec)

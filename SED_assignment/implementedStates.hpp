@@ -13,6 +13,7 @@
 #include "OutputComponent.hpp"
 #include <stdlib.h>
 #include <cmath>
+#include <cassert>
 
 enum class NEXT_STATE{
     STATE_MIN = -1,

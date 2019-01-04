@@ -12,7 +12,7 @@
 Context::Context()
 {
     importParameters();
-    _state = new Configure();
+    _state = new Mainmenu();
 }
 void Context::importParameters()
 {
