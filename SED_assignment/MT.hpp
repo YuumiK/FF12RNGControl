@@ -34,6 +34,8 @@ private:
     int mti=N+1; /* mti==N+1 means mt[N] is not initialized */
     void sgenrand(unsigned long seed);
     
+    unsigned long beforeMtN;
+    
 protected:
     void initializeAlgorithm();
     void forward();

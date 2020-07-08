@@ -4,7 +4,7 @@
 //
 //  Created by Yuumi Konishi on 2018/12/26.
 //  Copyright © 2018 KoniKoni. All rights reserved.
-//
+//  reference : http://www.fftogether.com/forum/index.php?topic=2778.0
 
 #include "MT.hpp"
 
@@ -43,7 +43,7 @@ void MT::forward()
     
     if (mti >= N)
     { /* generate N words at one time */
-        int kk;
+        int kk; 
         
         for (kk = 0; kk < N - M; kk++)
         {
@@ -55,6 +55,7 @@ void MT::forward()
             y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
             mt[kk] = mt[kk+(M-N)] ^ (y >> 1) ^ mag01[y & 0x1];
         }
+        //beforeMtN = mt[N-1];
         y = (mt[N-1]&UPPER_MASK)|(mt[0]&LOWER_MASK);
         mt[N-1] = mt[M-1] ^ (y >> 1) ^ mag01[y & 0x1];
         
@@ -76,45 +77,43 @@ void MT::backward()
     assert(getCurrentPosition() >= 0);
     unsigned long y;
     unsigned long a32;
-    static unsigned long mag01[2]={0x0, MATRIX_A};
-    /* mag01[x] = x * MATRIX_A  for x=0,1 */
     
     --mti;
+    
     if(mti == 0)
     {
         mti = N;
         int kk;
-        
-        a32 = (mt[M-1] ^ mt[N-1])>>31;
-        y = mt[M-1] ^ mag01[a32] ^ mt[N-1];
-        y = y << 1 | a32;
-        mt[N-1] = y & UPPER_MASK;
+       
+        //N-1, -1, M-1
+        a32 = mt[N-1] ^ mt[M-1];
+        y = a32 & UPPER_MASK ? (a32 ^ MATRIX_A) << 1 | 1 : a32 << 1;
+        mt[N-1] = (y & UPPER_MASK) | (mt[N-1] & LOWER_MASK);
         
         for(kk = N-1 - 1; kk >= N-M; kk--)
         {
-            a32 = (mt[kk + (M-N)] ^ mt[kk])>>31;
-            y = mt[kk + (M-N)] ^ mag01[a32] ^ mt[kk];
-            y = y << 1 | a32;
-            mt[kk] = y & UPPER_MASK;
-        	mt[kk+1] |= y & LOWER_MASK;
+            //kk, kk+1, kk-(N-M)
+            a32 = mt[kk + (M-N)] ^ mt[kk];
+            y = a32 & UPPER_MASK ? (a32 ^ MATRIX_A) << 1 | 1 : a32 << 1;
+            mt[kk+1] = (mt[kk+1] & UPPER_MASK) | (y & LOWER_MASK);
+            mt[kk] = (y & UPPER_MASK) | (mt[kk] & LOWER_MASK);
         }
         
         for (; kk >= 0; kk--)
         {
-            a32 = (mt[kk + M] ^ mt[kk])>>31;
-            y = mt[kk + M] ^ mag01[a32] ^ mt[kk];
-            y = y << 1 | a32;
-            mt[kk] = y & UPPER_MASK;
-            mt[kk+1] |= y & LOWER_MASK;
+            //kk, kk+1, kk+M
+            a32 = mt[kk + M] ^ mt[kk];
+            y = a32 & UPPER_MASK ? (a32 ^ MATRIX_A) << 1 | 1 : a32 << 1;
+            mt[kk+1] = (mt[kk+1] & UPPER_MASK) | (y & LOWER_MASK);
+            mt[kk] = (y & UPPER_MASK) | (mt[kk] & LOWER_MASK);
         }
+       	//N-1, 0, M-1
+        a32 = mt[M-1] ^ mt[N-1];
+        y = a32 & UPPER_MASK ? (a32 ^ MATRIX_A) << 1 | 1 : a32 << 1;
+        mt[0] = (mt[0] & UPPER_MASK) | (y & LOWER_MASK);
         
-        a32 = (mt[M-1] ^ mt[N-1])>>31;
-        y = mt[M-1] ^ mag01[a32] ^ mt[N-1];
-        y = y << 1 | a32;
-        mt[N-1] |= y & LOWER_MASK;
     }
-    
-    y = mt[mti - 1];
+    y = mt[mti-1];
     y ^= TEMPERING_SHIFT_U(y);
     y ^= TEMPERING_SHIFT_S(y) & TEMPERING_MASK_B;
     y ^= TEMPERING_SHIFT_T(y) & TEMPERING_MASK_C;

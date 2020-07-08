@@ -14,6 +14,10 @@ Context::Context()
     importParameters();
     _state = new Mainmenu();
 }
+Context::~Context()
+{
+    Exit();
+}
 void Context::importParameters()
 {
     std::ifstream reading_file;

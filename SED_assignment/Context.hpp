@@ -116,6 +116,7 @@ private:
 
 public:
     Context();
+    ~Context();
     static float getParameter(PARAMETERS p);
     static void setParameter(PARAMETERS p, float f);
     static int getHPmax(int lv);

@@ -124,7 +124,7 @@
 		BCAFACBF21D334E3001BDB3A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = KoniKoni;
 				TargetAttributes = {
 					BCAFACC621D334E3001BDB3A = {
@@ -138,6 +138,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = BCAFACBE21D334E3001BDB3A;
 			productRefGroup = BCAFACC821D334E3001BDB3A /* Products */;
@@ -287,6 +288,7 @@
 		BCAFACCF21D334E3001BDB3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -295,6 +297,7 @@
 		BCAFACD021D334E3001BDB3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
